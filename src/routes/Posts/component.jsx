@@ -1,6 +1,7 @@
 import {Link, Outlet} from 'react-router-dom';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useState } from 'react';
 
 import './style.scss';
 
@@ -9,22 +10,22 @@ const Posts = () =>{
       title: '', 
       body: '', 
       userId: ''
-  }
+    }
 
-  const SignupSchema = Yup.object().shape({
-    title: Yup.string()
-      .min(2, 'Too Short!')
-      .max(70, 'Too Long!')
-      .required('Required'),
-    body: Yup.string()
-      .min(5, 'Too Short!')
-      .max(200, 'Too Long!')
-      .required('Required'),
-    userId: Yup.string()
-      .required('Required')
-  });
-
-  const handleSubmit = (values, actions) =>{
+    const SignupSchema = Yup.object().shape({
+      title: Yup.string()
+        .min(2, 'Too Short!')
+        .max(70, 'Too Long!')
+        .required('Required'),
+      body: Yup.string()
+        .min(5, 'Too Short!')
+        .max(200, 'Too Long!')
+        .required('Required'),
+      userId: Yup.string()
+        .required('Required')
+    });
+    const [user_data, setUser] = useState([]);
+    const handleSubmit = (values, actions) =>{
         fetch('https://jsonplaceholder.typicode.com/posts', {
           method: 'POST',
           body: JSON.stringify(values, null, 3),
@@ -33,10 +34,12 @@ const Posts = () =>{
           }
         })
         .then(res => res.json())
-        .then(data => console.log('data', data))
+        .then(setUser)
         .catch(err=> console.log(err))
 
         actions.setSubmitting(false);
+
+        return {user_data}
   }
 
 
