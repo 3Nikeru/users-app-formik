@@ -1,0 +1,9 @@
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    input, textarea, select{
+        margin-bottom: 20px;
+    }
+}
