@@ -1,4 +1,4 @@
-import {Link, Outlet} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
@@ -26,6 +26,11 @@ const Posts = () =>{
     });
     const [user_data, setUser] = useState([]);
     const handleSubmit = (values, actions) =>{
+          const newUser = {
+            title: values.title, 
+            body: values.body, 
+            userId: values.userId
+          }
         fetch('https://jsonplaceholder.typicode.com/posts', {
           method: 'POST',
           body: JSON.stringify(values, null, 3),
@@ -34,20 +39,17 @@ const Posts = () =>{
           }
         })
         .then(res => res.json())
-        .then(setUser)
+        .then(setUser([...user_data, newUser]))
         .catch(err=> console.log(err))
-
         actions.setSubmitting(false);
-
-        return {user_data}
   }
 
-
+    console.log({user_data})
    return (
     <>
         <h2>Post</h2>
         <Link to="/">Home</Link>
-    <div style={{textAlign: '-webkit-center'}}>
+    <div className="form" style={{textAlign: '-webkit-center'}}>
         <h1>Anywhere in your app!</h1>
         <Formik
           initialValues={initialValues}
@@ -79,8 +81,17 @@ const Posts = () =>{
      </Formik>
      
     </div>
-    <div>
-      <Outlet/>
+    <div className='userBlock'>
+      {user_data.map(user => (
+        <div
+          className='user'
+          key={user.userId}
+          >
+          <h3>{user.title}</h3>
+          <p>{user.body}</p>
+          <p>{user.userId}</p>
+        </div>
+      ))}
     </div>
     </>
     );
