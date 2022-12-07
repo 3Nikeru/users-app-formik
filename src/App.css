@@ -1,7 +1,15 @@
+html, body{
+  background-color: black;
+  color: aliceblue;
+}
+
 .App {
   text-align: center;
 }
-
+a{
+  color: aqua;
+  text-decoration: none;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

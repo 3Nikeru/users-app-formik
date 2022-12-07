@@ -1,0 +1,56 @@
+.form{
+    padding: 20px 0;
+        form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 300px;
+            input, textarea, select{
+            font-family: Arial, Helvetica, sans-serif;
+            border: 3px solid aliceblue;
+            background-color: transparent;
+            color: aliceblue;
+            padding: 10px;
+            border-radius: 25px;
+            outline: none;
+            font-size: 16px;
+            margin-bottom: 20px;
+            resize: none;
+                option{
+                    background-color: black;
+                    color: aliceblue;
+                    border: 3px solid aliceblue;
+                    padding: 5px;
+                }
+            }
+            button{
+                margin-top: 20px;
+                padding: 10px;
+                border-radius: 20px;
+                border: 3px solid aliceblue;
+                background-color: transparent;
+                color: aliceblue;
+                text-transform: uppercase;
+                font-weight: 900;
+                letter-spacing: 2px;
+                cursor: pointer;
+            }
+        }
+}
+.userBlock{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    flex-wrap: wrap;
+    color: rgb(0, 0, 0);
+    .user{
+        border: 3px solid rgb(112, 175, 231);
+        padding: 15px 30px;
+        margin-top: 10px;
+        color: aliceblue;
+        border-radius: 5px;
+        h3{
+            color: rgb(112, 175, 231);
+        }
+    }
+}
